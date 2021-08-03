@@ -1,0 +1,9 @@
+{
+    "api": {
+        "port": 26701
+    },
+    "database": {
+        "uri": "dbConnectUri",
+        "name": "dbName"
+    }
+}
