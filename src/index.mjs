@@ -80,7 +80,7 @@ async function dbPOST(name, res, req) {
     let sentToken = req.headers["x-access-token"] || req.headers["authorization"];
 
     if (!sentToken) return ERR(res, 401, "Access denied. No token provided.");
-    if (sentToken != config.api.token) {
+    if (sentToken != configCache.api.token) {
         ERR(res, 403, "Invalid token.");
     } else {
         client.connect(async function (err) {
@@ -107,13 +107,13 @@ async function dbPOST(name, res, req) {
                 let upImage = req.files.image;
                 let fileExt = upImage.name.split(".").slice(-1);
                 let fileName = docs.links.length + 1;
-                docs.links.push(`https://cdn.${config.api.url}/media/${name}/${fileName}.${fileExt}`);
+                docs.links.push(`https://cdn.${configCache.api.url}/media/${name}/${fileName}.${fileExt}`);
                 upImage.mv(`../cdn/media/${name}/${fileName}.${fileExt}`);
 
                 await db.collection("links").updateOne({ name: name }, { $set: docs });
 
                 res.status(200);
-                res.json({ "msg": "Successfully uploaded.", "link": `https://cdn.${config.api.url}/media/${name}/${fileName}.${fileExt}` });
+                res.json({ "msg": "Successfully uploaded.", "link": `https://cdn.${configCache.api.url}/media/${name}/${fileName}.${fileExt}` });
             });
 
         });
