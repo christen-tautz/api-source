@@ -101,7 +101,8 @@ async function dbPOST(name, res, req) {
             await db.collection("links").findOne({ name: name }).then(async docs => {
 
                 if (docs == undefined) {
-                    docs = await db.collection("links").insertOne({ name: name, links: [] });
+                    await db.collection("links").insertOne({ name: name, links: [] });
+                    docs = await db.collection("links").findOne({ name: name })
                 };
 
                 let upImage = req.files.image;
