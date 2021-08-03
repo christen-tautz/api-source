@@ -1,6 +1,8 @@
 {
     "api": {
-        "port": 26701
+        "port": 26701,
+        "token": "apiUploadToken",
+        "url": "yourWebsiteUrl"
     },
     "database": {
         "uri": "dbConnectUri",
