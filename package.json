@@ -1,0 +1,26 @@
+{
+  "name": "api-source",
+  "version": "1.0.0",
+  "description": "Source for the image api used on api.christen-tautz.de ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christen-tautz/api-source.git"
+  },
+  "author": "Christen Tautz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christen-tautz/api-source/issues"
+  },
+  "homepage": "https://github.com/christen-tautz/api-source#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "mongodb": "^4.0.0-beta.2",
+    "morgan": "^1.10.0"
+  }
+}
