@@ -23,29 +23,6 @@ async function main() {
         console.log(`Server running on port ${configCache.api.port}`);
     });
 
-    api.get('/v1/media/neko', async (req, res, next) => {
-        dbGET("neko", res, req);
-    });
-
-    api.get('/v1/media', async (req, res, next) => {
-        client.connect(async function (err) {
-            let db = client.db(configCache.database.name);
-            let endpoints = []
-
-            await db.collection("links").find({ name: { $exists: true } }).toArray(function (err, docs) {
-                try {
-                    docs.forEach(function (doc) {
-                        endpoints.push(doc.name);
-                    });
-                    res.status(200);
-                    res.json({ "available_endpoints": endpoints });
-                } finally {
-                    client.close();
-                };
-            });
-        });
-    });
-
     api.get('/v2/media/*', async (req, res, next) => {
         dbGET(req.url.split("/").pop(), res, req);
     });
